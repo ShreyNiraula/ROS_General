@@ -41,7 +41,7 @@ image_transport::Publisher pub = it.advertise("out_image_base_topic", 1);
 
 ```
 
--python not yet implemeted
+- python not yet implemeted
 
 
 ## structure
@@ -57,7 +57,8 @@ image_transport::Publisher pub = it.advertise("out_image_base_topic", 1);
 - simple demo where image is passed as argument which is accepted by openCV and then transfered to ROS sensor_msgs/Image format (with the help of CV_bridge)
 
 - Using Image transport publisher Advertise function, 
-	- we are going to be publishing images on the base topic "camera/image". 	 - Depending on whether more plugins are built, additional (per-plugin) topics derived from the base topic may also be advertised. 
+	- we are going to be publishing images on the base topic "camera/image". 	 
+	- Depending on whether more plugins are built, additional (per-plugin) topics derived from the base topic may also be advertised. 
 
 
 ## Subscriber Code
@@ -71,7 +72,7 @@ image_transport::Publisher pub = it.advertise("out_image_base_topic", 1);
 
 - with default nodes of those created above and run, we can perform the simple task as 
 
-// image
+/home/shrey/Pictures/Screenshot from 2020-04-11 20-51-56.png
 
 
 - lets add new trasnport of compression
@@ -85,11 +86,12 @@ image_transport::Publisher pub = it.advertise("out_image_base_topic", 1);
 	- Now let's start up a new subscriber, this one using compressed transport. The key is that image_transport subscribers check the parameter ~image_transport for the name of a transport to use in place of "raw". Let's set this parameter and start a subscriber node with name "compressed_listener": 
 
 	- ```  rosparam set /compressed_listener/image_transport compressed
-	       rosrun image_transport_tutorial my_subscriber __name:=compressed_listener ```
+	       rosrun image_transport_tutorial my_subscriber __name:=compressed_listener
+	  ```
 
 	- the resultant rqt graph will be:
 
-// images here....
+/home/shrey/Pictures/Screenshot from 2020-04-11 20-52-04.png
 
 
 
