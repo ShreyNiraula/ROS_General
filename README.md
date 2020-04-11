@@ -72,7 +72,8 @@ image_transport::Publisher pub = it.advertise("out_image_base_topic", 1);
 
 - with default nodes of those created above and run, we can perform the simple task as 
 
-![without additional plugin](/home/shrey/ros/git_imageTransport/images/Screenshot from 2020-04-11 20-51-56.png)
+//images
+
 
 
 - lets add new trasnport of compression
@@ -91,7 +92,8 @@ image_transport::Publisher pub = it.advertise("out_image_base_topic", 1);
 
 	- the resultant rqt graph will be:
 
-![with compressed plugin](/home/shrey/ros/git_imageTransport/images/Screenshot from 2020-04-11 20-52-04.png)
+// images
+
 
 
 
