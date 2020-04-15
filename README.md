@@ -28,6 +28,9 @@
 - throttle message (rate)
 	- ```rosrun topic_tools throttle messages base_scan 1.0```
 		- here, incoming topic of base_scan is set at message rate of 1Hz and republished as base_scan_throttle
+		- since, outgoing topic is by default set as base_scan_throttle, we don't need to set its name in command 
+		- for different output topic name, we can set it as ```rosrun topic_tools throttle messages base_scan 1.0 my_throttle_output```
+		- now, doing above, output topic is named as my_throttle_output instead of base_scan_throttle
 
 - throttle bytes (bandwidth)
 	- instead of message rate, now bandwidth is used
