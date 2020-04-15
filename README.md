@@ -35,5 +35,5 @@
 - throttle bytes (bandwidth)
 	- instead of message rate, now bandwidth is used
 	- ``` throttle bytes base_scan 1024 1.0```
-		- here, incoming topic of base_scan is set at bandwirdth 1Kbps (or also called as _window_ size of 1kbps sample rate) and republished as base_scan_throttle
+		- here, incoming topic of base_scan is set at bandwirdth 1Kbps (or also called as __window__ size of 1kbps sample rate) and republished as base_scan_throttle
 		
