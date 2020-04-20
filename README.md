@@ -2,7 +2,6 @@
 
 - ref:
 	- [http://wiki.ros.org/joint_state_publisher]
-	- [http://wiki.ros.org/image_transport/Tutorials]
 
 - publishes about the state of the joint
 - in the form of sensor_msgs/JointState
