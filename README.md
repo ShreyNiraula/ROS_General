@@ -18,7 +18,7 @@ revolute, floating, prismatic etc.
 ## GUI
 - previously we had to set __use_gui__ to __True__
 - now, gui functionality is in its own package: __joint_state_publisher_gui__
-- use of old way although supported to be not recommended
+- use of old way although supported not recommended
 - also,for packages transitioning before this change, __joint_state_publisher_gui__ should be added as an __<exec_depend>__ to package.xml and launch files should be updated to launch __joint_state_publisher_gui__ instead of using __joint_state_publisher__ with __use_gui__ parameter.
 
 
@@ -27,7 +27,7 @@ revolute, floating, prismatic etc.
 - eg: with one rotation of pulley, another needs to be turned 3 times, then 
 	- ``` joint_D: {parent: joint_A, factor: 3 } ``` means jointD depends on jointA as 3 times factor, which can be 3 times rotation or something like that. 
 
-
+- more example:
 	- joint_F: {parent: joint_C, factor: -1 } // opposite acting types of dependency
 
 
