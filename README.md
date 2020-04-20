@@ -1,100 +1,52 @@
-# Image Transport Package
+# JOINT STATE PUBLISHER
 
 - ref:
-	- [http://wiki.ros.org/image_transport]
+	- [http://wiki.ros.org/joint_state_publisher]
 	- [http://wiki.ros.org/image_transport/Tutorials]
 
-
-- for transporting images in low bandwidth compressed format
-- needs to be subsribed and published on images (accepts image format only)
-
-## Abstraction
-- abstract the complex image and video codec manipulation 
-- for ease working with only sensor_msgs/Image message
-
-## Dependency and Plugins
-- default = raw image transport
-- plugins available for more complicated trasport (eg compression)
-- plugins not the part of ros dependency
-- if plugins available in system, it auto uses that plugin without manual implication
+- publishes about the state of the joint
+- in the form of sensor_msgs/JointState
+- based on parameters from param server, it publishes the Jointstate msgs for non-fixed joints such as continuous, 
+revolute, floating, prismatic etc.
 
 
-## Usage
-- similar to ROS Publisher and Subscriber
-- but not only one node publication, many nodes when suitable transport available
+- can take the values from possible sources of:
+	- GUI input
+	- from subscribed other jointstate msgs
+	- the value of another joint
+	- default value that can be zero or some given value
+
+## GUI
+- previously we had to set __use_gui__ to __True__
+- now, gui functionality is in its own package: __joint_state_publisher_gui__
+- use of old way although supported to be not recommended
+- also,for packages transitioning before this change, __joint_state_publisher_gui__ should be added as an __<exec_depend>__ to package.xml and launch files should be updated to launch __joint_state_publisher_gui__ instead of using __joint_state_publisher__ with __use_gui__ parameter.
 
 
-_Instead of doing simple ros:: pub and ros::sub, we do as_
-``` 
-// instead of these....
-ros::NodeHandle nh;
-ros::Subscriber sub = nh.subscribe("in_image_topic", 1, imageCallback);
-ros::Publisher pub = nh.advertise<sensor_msgs::Image>("out_image_topic", 1);
-
-// we do as ....
-ros::NodeHandle nh;
-image_transport::ImageTransport it(nh);
-image_transport::Subscriber sub = it.subscribe("in_image_base_topic", 1, imageCallback);
-image_transport::Publisher pub = it.advertise("out_image_base_topic", 1);
-
-// the above codes are parts of int main() while initiating nodes and creating pubs and subs 
-
-```
-
-- python not yet implemeted
+## Dependency
+- one joint can be made to depend on another.
+- eg: with one rotation of pulley, another needs to be turned 3 times, then 
+	- ``` joint_D: {parent: joint_A, factor: 3 } ``` means jointD depends on jointA as 3 times factor, which can be 3 times rotation or something like that. 
 
 
-## structure
-- if /stereo/left/image, is default one, then when plugins for compression (say) available, image transport package auto publishes (along with default) the /stereo/left/image/compressed (this is mere example, there may not be such exact topics)
+	- joint_F: {parent: joint_C, factor: -1 } // opposite acting types of dependency
 
 
-
-# Coding 
-
-## Publisher code
-- ref: [http://wiki.ros.org/image_transport/Tutorials/PublishingImages]
-
-- simple demo where image is passed as argument which is accepted by openCV and then transfered to ROS sensor_msgs/Image format (with the help of CV_bridge)
-
-- Using Image transport publisher Advertise function, 
-	- we are going to be publishing images on the base topic "camera/image". 	 
-	- Depending on whether more plugins are built, additional (per-plugin) topics derived from the base topic may also be advertised. 
-
-
-## Subscriber Code
-- ref: [http://wiki.ros.org/image_transport/Tutorials/SubscribingToImages]
-
-- simple idea is that when openCV converts the image to ROS message format, then when these messages are available, callback function is called that converts it back to image and view on screen
-
-
-## Running the Simple Image Publisher and Subscriber with Different Transports
-- ref: [http://wiki.ros.org/image_transport/Tutorials/ExaminingImagePublisherSubscriber]
-
-- with default nodes of those created above and run, we can perform the simple task as 
-
-//images
-
-
-
-- lets add new trasnport of compression
-
-	- The compressed_image_transport package provides plugins for the "compressed" transport, which sends images over the wire in either JPEG- or PNG-compressed form. Notice that compressed_image_transport is not a dependency of your package; image_transport will automatically discover all transport plugins built in your ROS system.
-
-	- Shut down your publisher node and restart it. If you list the published topics again, you should see a new one: 
-
-	- ``` /camera/image/compressed [sensor_msgs/CompressedImage] 1 publisher ```
-
-	- Now let's start up a new subscriber, this one using compressed transport. The key is that image_transport subscribers check the parameter ~image_transport for the name of a transport to use in place of "raw". Let's set this parameter and start a subscriber node with name "compressed_listener": 
-
-	- ```  rosparam set /compressed_listener/image_transport compressed
-	       rosrun image_transport_tutorial my_subscriber __name:=compressed_listener
+## Default values
+- usually zero(0)
+- but with specific defined value, we define within as
+	- ``` 
+		zeros:
+  		  joint_A: 1.57
+  		  joint_B: 0.785
 	  ```
 
-	- the resultant rqt graph will be:
 
-// images
+## More...
 
-
+- the package can be used more in conjuction with __robot_state_publisher__
+- url: [http://wiki.ros.org/robot_state_publisher]
+ 
 
 
 
