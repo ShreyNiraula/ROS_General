@@ -28,7 +28,7 @@ revolute, floating, prismatic etc.
 	- ``` joint_D: {parent: joint_A, factor: 3 } ``` means jointD depends on jointA as 3 times factor, which can be 3 times rotation or something like that. 
 
 - more example:
-	- joint_F: {parent: joint_C, factor: -1 } // opposite acting types of dependency
+	- ``` joint_F: {parent: joint_C, factor: -1 } ``` // opposite acting types of dependency
 
 
 ## Default values
@@ -45,6 +45,7 @@ revolute, floating, prismatic etc.
 
 - the package can be used more in conjuction with __robot_state_publisher__
 - url: [http://wiki.ros.org/robot_state_publisher]
+- for note on robot_state_pub: [https://github.com/ShreyNiraula/ROS_imageTransport/blob/robot_state_publisher/README.md]
  
 
 
