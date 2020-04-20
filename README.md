@@ -24,7 +24,7 @@
 - either as node or library
 - here focused as __node__
 
-1. 2 criteria beforehead:
+1. Two criteria beforehead:
 	- we need to run urdf xml robot description loaded on the Parameter Server.
 	- we need source that gives the state of joint so that computation is carried out to publish the 3D pose of links ie, we need the joint positions as a __sensor_msgs/JointState__
 
