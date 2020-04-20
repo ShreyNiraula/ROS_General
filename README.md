@@ -8,8 +8,6 @@
 - for purpose of accelerated, slowed or stepped control over system's percieved time
 
 - eg cases are playing bag file, playing sensor data according to timestamp of sensor data // according to sensor calibrated timing, being simulated on the environment
-- needs to be subsribed and published on images (accepts image format only)
-
 
 ## More Depth Knowledge
 - simulation time is published on /clock
@@ -26,8 +24,7 @@
 - ie, in summary, once set, then time remains constant till the next update on /clock topic
 
 
-
-## Clock server:
+## Clock server
 - any node that publishes to /clock topic
 - only one server should be there to publish to /clock
 
