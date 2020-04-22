@@ -6,3 +6,4 @@
 3. joint_state_publisher
 4. ros_state_publisher
 5. clock 
+6. frames and tf
