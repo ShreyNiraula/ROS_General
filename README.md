@@ -1,8 +1,14 @@
-## THIS REPOSITORY IS FOR NOTETAKING PLACE OF GENERAL ROS PACKAGES
+# SOME COOL TRICKS IN ROS
 
-## CURRENT ITEMS 
-1. image_transport package
-2. ros_throttle
-3. joint_state_publisher
-4. ros_state_publisher
-5. clock 
+## Echo to csv file
+- we can rostopic echo the topic to csv file 
+- `` rostopic echo -p /topic_name  > file.csv
+
+- -p flag stores the echoed values in matlab friendly format suitable mainly for csv file format
+- > sign is output stream syntax from scripting that writes (overwrites) on file
+- if needed to append, use >> instead.
+
+
+### More on topic
+- if needed to store like only the header information, then do as ``` rostopic echo -p -n10 /topic_name/header > file.csv
+- -n10 stores 1st 10 header info, (nx format, x for number of headers)
