@@ -8,7 +8,6 @@
 - > sign is output stream syntax from scripting that writes (overwrites) on file
 - if needed to append, use >> instead.
 
-
-### More on topic
+__More on topic__
 - if needed to store like only the header information, then do as ``` rostopic echo -p -n10 /topic_name/header > file.csv
 - -n10 stores 1st 10 header info, (nx format, x for number of headers)
